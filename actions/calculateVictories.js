@@ -11,8 +11,6 @@ const calculateVictories = (playerRoll, oppRoll) => {
       victories += 1
     }
   })
-  console.log('winner', winner)
-  console.log('victories', victories)
   return victories
 }
 
