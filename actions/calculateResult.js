@@ -11,8 +11,8 @@ const calculateVictoryType = (winner, victories, diePool) => {
 }
 const calculateResult = (dieRolls) => {
   const { playerRoll, oppRoll } = dieRolls
-  const victories = calculateVictories(playerRoll, oppRoll)
   const winner = calculateWinner(playerRoll, oppRoll)
+  const victories = calculateVictories(winner, playerRoll, oppRoll)
   return {
     winner: winner,
     victories: victories,

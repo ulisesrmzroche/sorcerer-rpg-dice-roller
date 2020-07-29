@@ -18,8 +18,12 @@ const calculateWinner = (playerRoll, oppRoll) => {
   } else if (oppRollMax > playerRollMax) {
     return 'oppRoll'
   } else {
-    playerRoll.shift()
-    oppRoll.shift()
+    playerRoll = playerRoll.filter((e)=>{
+      return e !== playerRollMax
+    })
+    oppRoll = oppRoll.filter((e)=>{
+      return e !== oppRollMax
+    })
     return calculateWinner(playerRoll, oppRoll)
   }
 }

@@ -1,16 +1,12 @@
-import calculateWinner from './calculateWinner'
-
-const calculateVictories = (playerRoll, oppRoll) => {
-  let winner = calculateWinner(playerRoll, oppRoll)
-  winner = winner === 'playerRoll' ? playerRoll : oppRoll
-  let loser = winner === 'playerRoll' ? oppRoll : playerRoll
-  let loserMax = Math.max(...loser)
-  let victories = winner.filter((roll)=>{
+const calculateVictories = (winner, playerRoll, oppRoll) => {
+  let winnerRoll = winner === 'playerRoll' ? playerRoll : oppRoll
+  let loserRoll = winner === 'playerRoll' ? oppRoll : playerRoll
+  let loserMax = Math.max(...loserRoll)
+  return winnerRoll.filter((roll)=>{
     if (roll > loserMax) {
       return roll
     }
-  })
-  return victories.length
+  }).length
 }
 
 export default calculateVictories
