@@ -1,26 +1,19 @@
 import calculateVictories from '../calculateVictories'
 
-describe('Actions::calculateWinner', ()=>{
-  it('should return winner given playerRoll has largest single die', ()=>{
-    const playerRoll = [4, 3, 6]
-    const oppRoll = [2, 5, 5]
-    expect(calculateWinner(playerRoll, oppRoll)).toBe('playerRoll')
+describe('Actions::calculateVictories', ()=>{
+  let playerPool = [1, 2, 3]
+  let oppPool = [9]
+  it('should return number of victories given opposing die pools', ()=>{
+    expect(calculateVictories(playerPool, oppPool)).toBe(1)
   })
-
-  it('should return oppRoll given oppRoll has largest single die', ()=>{
-    const playerRoll = [4, 3, 6]
-    const oppRoll = [9]
-    expect(calculateWinner(playerRoll, oppRoll)).toBe('oppRoll')
+  it('should return number of victories given opposing die pools', ()=>{
+    playerPool = [1]
+    oppPool = [1]
+    expect(calculateVictories(playerPool, oppPool)).toBe(0)
   })
-
-  it('should return winner given one player has no dice left in the pool and the other one has at least 1 left', ()=>{
-    const playerRoll = []
-    const oppRoll = [9]
-    expect(calculateWinner(playerRoll, oppRoll)).toBe('oppRoll')
-  })
-  it('should not return a winner return playerRoll given playerRoll has no dice left and oppRoll has at least 1 left', ()=>{
-    const playerRoll = [1]
-    const oppRoll = []
-    expect(calculateWinner([9], oppRoll)).toBe('playerRoll')
+  it('should return number of victories given opposing die pools', ()=>{
+    playerPool = [10, 10, 4, 3]
+    oppPool = [10, 9, 3,]
+    expect(calculateVictories(playerPool, oppPool)).toBe(0)
   })
 })

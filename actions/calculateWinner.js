@@ -1,12 +1,14 @@
 const calculateWinner = (playerRoll, oppRoll) => {
+  if (playerRoll.length && !oppRoll.length) return playerRoll;
+  if (!playerRoll.length && oppRoll.length) return oppRoll;
   const playerRollMax = Math.max(...playerRoll)
   const oppRollMax = Math.max(...oppRoll)
   if (playerRollMax > oppRollMax) {
-    return 'playerRoll'
+    return playerRoll
   } else if (oppRollMax > playerRollMax) {
-    return 'oppRoll'
+    return oppRoll
   } else {
-    if (playerRoll.length === 1 || oppRoll.length === 1) return false;
+    if (!playerRoll.length && !oppRoll.length) return []
     playerRoll = playerRoll.filter((e)=>{
       return e !== playerRollMax
     })

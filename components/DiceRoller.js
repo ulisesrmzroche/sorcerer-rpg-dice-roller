@@ -95,7 +95,7 @@ export default function DiceRoller() {
                   const dieRolls = rollDice(playerDicePoolSize, oppDicePoolSize, dieSize)
                   let results = calculateResult(dieRolls)
                   setResult({
-                    winner: results.winner,
+                    winner: results.winner === dieRolls.playerRoll ? 'Player' : 'Opp',
                     victories: results.victories,
                     dieRolls: dieRolls,
                     victoryType: results.victoryType
@@ -124,11 +124,13 @@ export default function DiceRoller() {
           <div className="column">
             <h3 className={styles.resultsHeading}>Results</h3>
             <p><strong>Winner</strong>: {result.winner}</p>
-            <p>
-              <strong>Victories</strong>: {result.victories} - {result.victoryType}
-            </p>
+            {result.winner && (
+              <p>
+                <strong>Victories</strong>: {result.victories} - {result.victoryType}
+              </p>
+            )}
             <br />
-            <p><strong>Player Rolls:</strong> {result.dieRolls && result.dieRolls.playerRoll.map((roll, i) => {
+            <p><strong>Player Pool:</strong> {result.dieRolls && result.dieRolls.playerRoll.map((roll, i) => {
               return (
                 <span className={styles.die} key={`player-die-roll-${i}`}>
                   {`${roll} `}
@@ -137,7 +139,7 @@ export default function DiceRoller() {
             })}
             </p>
             <br />
-            <p><strong>Opp Rolls:</strong> {result.dieRolls && result.dieRolls.oppRoll.map((roll, i) => {
+            <p><strong>Opp Pool:</strong> {result.dieRolls && result.dieRolls.oppRoll.map((roll, i) => {
               return (
                 <span className={styles.die} key={`opp-die-roll-${i}`}>
                   {`${roll} `}
