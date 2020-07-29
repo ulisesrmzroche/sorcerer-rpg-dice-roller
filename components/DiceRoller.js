@@ -122,23 +122,24 @@ export default function DiceRoller() {
             </div>
           </div>
           <div className="column">
+            <h3 className={styles.resultsHeading}>Results</h3>
             <p><strong>Winner</strong>: {result.winner}</p>
             <p>
               <strong>Victories</strong>: {result.victories} - {result.victoryType}
             </p>
             <br />
-            <p><strong>Player Rolls:</strong> {result.dieRolls && result.dieRolls.playerRoll.map((roll) => {
+            <p><strong>Player Rolls:</strong> {result.dieRolls && result.dieRolls.playerRoll.map((roll, i) => {
               return (
-                <span className={styles.die}>
+                <span className={styles.die} key={`player-die-roll-${i}`}>
                   {`${roll} `}
                 </span>
               )
             })}
             </p>
             <br />
-            <p><strong>Opp Rolls:</strong> {result.dieRolls && result.dieRolls.oppRoll.map((roll) => {
+            <p><strong>Opp Rolls:</strong> {result.dieRolls && result.dieRolls.oppRoll.map((roll, i) => {
               return (
-                <span className={styles.die}>
+                <span className={styles.die} key={`opp-die-roll-${i}`}>
                   {`${roll} `}
                 </span>
               )
