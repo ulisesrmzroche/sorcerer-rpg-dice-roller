@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../../styles/GamesNew.module.css'
-import Link from 'next/Link'
+import Link from 'next/link'
 
 import loadGames from '../../actions/loadGame'
 
