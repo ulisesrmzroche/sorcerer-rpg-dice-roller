@@ -106,9 +106,8 @@
   height: 1em;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
+.die {
+  border: 1px solid black;
+  padding: 3px;
+  margin-right: 5px;
 }
