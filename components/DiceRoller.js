@@ -9,8 +9,9 @@ export default function DiceRoller() {
   const [oppDicePoolSize, setOppDicePoolSize] = useState(1)
   const [result, setResult] = useState({
     winner: null,
-    victories: 0,
-    dieRolls: null
+    victories: null,
+    dieRolls: null,
+    victoryType: null
   })
   const [dieType] = React.useState([
     {
@@ -23,7 +24,7 @@ export default function DiceRoller() {
     { label: "d12", value: 12 },
     { label: "d20", value: 20 }
   ]);
-  const [dieSize] = React.useState(10)
+  const [dieSize, setDieSize] = React.useState(10)
 
   return (
     <div className="dice-roller">
@@ -40,42 +41,52 @@ export default function DiceRoller() {
             <form className="card-content" onSubmit={(e)=>{
               e.preventDefault()
             }}>
-              <div>
-                <label>Player Pool</label>
+              <div className="field">
+                <div className="control">
+                <label className="label">Player Pool</label>
                 <input
                   type="number"
                   value={playerDicePoolSize}
+                  className="input"
                   onChange={(e)=>{
                     setResult({winner: null})
                     setPlayerDicePoolSize(e.target.value)
                   }}
                   min={1}
                 />
+                </div>
               </div>
-              <div>
-                <label>Opp Pool</label>
-                <input
-                  type="number"
-                  value={oppDicePoolSize}
-                  min={1}
-                  onChange={(e)=>{
-                    setResult({winner: null})
-                    setOppDicePoolSize(e.target.value)
-                  }}
-                />
+              <div className="field">
+                <label className="label">Opp Pool</label>
+                <div className="control">
+                  <input
+                    type="number"
+                    value={oppDicePoolSize}
+                    min={1}
+                    className="input"
+                    onChange={(e)=>{
+                      setResult({winner: null})
+                      setOppDicePoolSize(e.target.value)
+                    }}
+                  />
+                </div>
               </div>
-              <div className="input-field" >
-                <label>Die Type</label>
-                <select
-                  value={dieSize}
-                  onChange={e => setValue(e.currentTarget.value)}
-                >
-                  {dieType.map(({ label, value }) => (
-                    <option key={value} value={value}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
+              <div className="field">
+                <label className="label">Die Type</label>
+                <div className="control">
+                  <div className="select is-fullwidth">
+                    <select
+                      value={dieSize}
+                      onChange={e => setDieSize(e.currentTarget.value)}
+                    >
+                      {dieType.map(({ label, value }) => (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
               </div>
               <button
                 className="button is-primary is-fullwidth"
@@ -86,30 +97,43 @@ export default function DiceRoller() {
                   setResult({
                     winner: results.winner,
                     victories: results.victories,
-                    dieRolls: dieRolls
+                    dieRolls: dieRolls,
+                    victoryType: results.victoryType
                   })
                 }}
-                disabled={result.winner ? true : false}
               >
                 Roll Dice
+              </button>
+              <button
+              className="button is-outline is-fullwidth is-small"
+              onClick={(e)=>{
+                e.preventDefault()
+                  setResult({
+                    winner: null,
+                    victories: null,
+                    dieRolls: null,
+                    victoryType: null
+                  })
+              }}
+              >
+                Reset
               </button>
             </form>
             </div>
           </div>
           <div className="column">
-          <div>
-            <h4>Winner: {result.winner}</h4>
-            <p>Victories: {result.victories}</p>
-            <p>Player Rolls: {result.dieRolls && result.dieRolls.playerRoll.map((roll) => {
+            <p><strong>Winner</strong>: {result.winner}</p>
+            <p>
+              <strong>Victories</strong>: {result.victories} - {result.victoryType}
+            </p>
+            <p><strong>Player Rolls:</strong> {result.dieRolls && result.dieRolls.playerRoll.map((roll) => {
               return `${roll}, `
             })}
             </p>
-            <p>Opp Rolls: {result.dieRolls && result.dieRolls.oppRoll.map((roll)=>{ return `${roll}`})}</p>
-            <small>Single Victory is a close win. Four or more victories is Total Domination</small>
-            <small>
-              If the player receives Victories equal to their number of dice, it is considered a Total Victory.
-            </small>
-          </div>
+            <p><strong>Opp Rolls:</strong> {result.dieRolls && result.dieRolls.oppRoll.map((roll) => { 
+              return `${roll}, `}
+             )}</p>
+
           </div>
         </div>
 
