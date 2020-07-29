@@ -18,6 +18,8 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.1.0",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
     "test": "^0.6.0"
   }
 }
