@@ -35,7 +35,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <div className="container">
-          <div className="columns is-mobile is-cen">
+          <div className="columns is-mobile is-centered">
             <div className="column">
 
             <p className="float-left">This app is Free! But if you like it and want to buy me a coffee: </p>
