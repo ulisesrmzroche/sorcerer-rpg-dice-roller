@@ -10,18 +10,24 @@ export default function Home() {
           <title>Sorcerer RPG Dice Roller</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
+        <header>
 
-        <main className={styles.main}>
+          <div className="column">
+
           <h1 className={styles.title}>
             Sorcerer RPG Die Roller
           </h1>
-          <small>by @ulisesrmzroche</small>
+          <p className={styles.description}>by @ulisesrmzroche</p>
 
           <p className={styles.description}>
             This is a Die Roller for the Sorcerer RPG by Ron Edwards
           </p>
+          </div>
+        </header>
 
-          <div className={styles.grid}>
+        <main className="columns">
+
+          <div className="column">
             <DiceRoller />
           </div>
         </main>
@@ -29,7 +35,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <div className="container">
-          <div className="columns">
+          <div className="columns is-mobile is-cen">
             <div className="column">
 
             <p className="float-left">This app is Free! But if you like it and want to buy me a coffee: </p>
@@ -41,12 +47,6 @@ export default function Home() {
             </form>
             </div>
 
-            <div className="column">
-
-            <p className="float-right">
-              @ulisesrmzroche
-            </p>
-            </div>
           </div>
         </div>
       </footer>

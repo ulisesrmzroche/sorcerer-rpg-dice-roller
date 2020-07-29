@@ -8,7 +8,7 @@ const calculateWinner = (playerRoll, oppRoll) => {
   } else if (oppRollMax > playerRollMax) {
     return oppRoll
   } else {
-    if (!playerRoll.length && !oppRoll.length) return []
+    if (!playerRoll.length && !oppRoll.length) return false
     playerRoll = playerRoll.filter((e)=>{
       return e !== playerRollMax
     })
