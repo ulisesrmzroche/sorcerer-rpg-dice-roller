@@ -20,6 +20,9 @@ export default function Home() {
           <p className={styles.description}>
             This is a Die Roller for the Sorcerer RPG by Ron Edwards
           </p>
+          <p className={styles.description}>
+            It is used to resolve conflict in-game.
+          </p>
 
           <div className={styles.grid}>
             <DiceRoller />
