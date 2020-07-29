@@ -35,7 +35,9 @@ export default function DiceRoller() {
       <main className={styles.main}>
         <div className="columns">
           <div className="column roll-settings">
-            <form onSubmit={(e)=>{
+            <div className="card">
+
+            <form className="card-content" onSubmit={(e)=>{
               e.preventDefault()
             }}>
               <div>
@@ -47,6 +49,7 @@ export default function DiceRoller() {
                     setResult({winner: null})
                     setPlayerDicePoolSize(e.target.value)
                   }}
+                  min={1}
                 />
               </div>
               <div>
@@ -54,6 +57,7 @@ export default function DiceRoller() {
                 <input
                   type="number"
                   value={oppDicePoolSize}
+                  min={1}
                   onChange={(e)=>{
                     setResult({winner: null})
                     setOppDicePoolSize(e.target.value)
@@ -74,6 +78,7 @@ export default function DiceRoller() {
                 </select>
               </div>
               <button
+                className="button is-primary is-fullwidth"
                 onClick={(e)=>{
                   e.preventDefault();
                   const dieRolls = rollDice(playerDicePoolSize, oppDicePoolSize, dieSize)
@@ -89,6 +94,7 @@ export default function DiceRoller() {
                 Roll Dice
               </button>
             </form>
+            </div>
           </div>
           <div className="column">
           <div>
