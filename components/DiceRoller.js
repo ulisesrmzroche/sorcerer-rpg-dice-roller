@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import styles from '../../styles/Home.module.css'
-import loadGame from '../../actions/loadGame'
-
-import { useRouter } from 'next/router'
+import styles from '../styles/Home.module.css'
 
 const rollDice = (playerDicePoolSize, oppRollDicePoolSize, dieSize = 10) => {
   const playerRoll = (()=>{
@@ -55,24 +52,30 @@ const calculateWinner = (playerRoll, oppRoll) => {
 }
 
 const calculateVictories = (playerRoll, oppRoll) => {
-  let victories = 1
   let winner = calculateWinner(playerRoll, oppRoll)
-  return victories
+  console.log('w', winner)
+  winner = winner === 'playerRoll' ? playerRoll : oppRoll
+  console.log('w', winner)
+  let loser = winner === 'playerRoll' ? oppRoll : playerRoll
+  let loserMax = Math.max(...loser)
+  let victories = winner.map((roll)=>{
+    if (roll > loserMax) {
+      return roll
+    }
+  })
+  return victories.length
 }
 
 const calculateResult = (dieRolls) => {
   const { playerRoll, oppRoll } = dieRolls
   return {
     winner: calculateWinner(playerRoll, oppRoll),
-    victories: calculateVictories(playerRoll, oppRoll) || 1
+    victories: calculateVictories(playerRoll, oppRoll)
   }
 }
 
-export default function Play() {
-  const router = useRouter()
-  const { uuid } = router.query
+export default function DiceRoller() {
 
-  const game = loadGame(uuid)
   const [playerDicePoolSize, setPlayerDicePoolSize] = useState(1)
   const [oppDicePoolSize, setOppDicePoolSize] = useState(1)
   const [result, setResult] = useState({
@@ -80,9 +83,21 @@ export default function Play() {
     victories: 0,
     dieRolls: null
   })
+  const [dieType] = React.useState([
+    {
+      label: "d10",
+      value: 10
+    },
+    { label: "d4", value: 4 },
+    { label: "d6", value: 6 },
+    { label: "d8", value: 8 },
+    { label: "d12", value: 12 },
+    { label: "d20", value: 20 }
+  ]);
+  const [dieSize] = React.useState(10)
 
   return (
-    <div className="container">
+    <div className="dice-roller">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -90,9 +105,8 @@ export default function Play() {
 
       <main className={styles.main}>
         <div>
-          <label>Player</label>
           <div>
-            <label>Die Pool</label>
+            <label>Player Pool</label>
             <input
               type="number"
               value={playerDicePoolSize}
@@ -101,9 +115,8 @@ export default function Play() {
           </div>
         </div>
         <div>
-          <label>DM</label>
           <div>
-            <label>Die Pool</label>
+            <label>Opp Pool</label>
             <input
               type="number"
               value={oppDicePoolSize}
@@ -111,16 +124,28 @@ export default function Play() {
             />
           </div>
         </div>
+        <div className="input-field" >
+          <label>Die Type</label>
+          <select
+            value={dieSize}
+            onChange={e => setValue(e.currentTarget.value)}
+          >
+             {dieType.map(({ label, value }) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+             ))}
+          </select>
+        </div>
         <button
           onClick={()=>{
-            const dieRolls = rollDice(playerDicePoolSize, oppDicePoolSize, game.dieSize)
+            const dieRolls = rollDice(playerDicePoolSize, oppDicePoolSize, dieSize)
             let results = calculateResult(dieRolls)
             setResult({
               winner: results.winner,
               victories: results.victories,
               dieRolls: dieRolls
             })
-            console.log(result)
           }}
           disabled={result.winner ? true : false}
         >Roll Dice</button>
@@ -141,8 +166,11 @@ export default function Play() {
         {result.winner && (
           <div>
             <h4>Winner: {result.winner}</h4>
-            <p>Victories: WIP</p>
-            <p>Player Rolls: {result.dieRolls.playerRoll.map((roll)=>{ return `${roll}`})}</p>
+            <p>Victories: {result.victories}</p>
+            <p>Player Rolls: {result.dieRolls.playerRoll.map((roll) => {
+              return `${roll}, `
+            })}
+            </p>
             <p>Opp Rolls: {result.dieRolls.oppRoll.map((roll)=>{ return `${roll}`})}</p>
             <small>Single Victory is a close win. Four or more victories is Total Domination</small>
             <small>
