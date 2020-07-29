@@ -32,15 +32,44 @@ export default function DiceRoller() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <div className="columns">
-          <div className="column roll-settings">
             <div className="card">
-
+            <div className="card-content">
+              <div className="columns">
+                <div className="column">
+                  <h3 className={styles.resultsHeading}>Results</h3>
+                  <p><strong>Winner</strong>: {result.winner}</p>
+                  {result.winner && (
+                    <p>
+                      <strong>Victories</strong>: {result.victories} - {result.victoryType}
+                    </p>
+                  )}
+                  <br />
+                  <p style={{marginBottom: '1em'}}><strong>Player Pool:</strong> {result.dieRolls && result.dieRolls.playerRoll.map((roll, i) => {
+                    return (
+                      <span className={styles.die} key={`player-die-roll-${i}`}>
+                        {`${roll} `}
+                      </span>
+                    )
+                  })}
+                  </p>
+                  <p><strong>Opp Pool:</strong> {result.dieRolls && result.dieRolls.oppRoll.map((roll, i) => {
+                    return (
+                      <span className={styles.die} key={`opp-die-roll-${i}`}>
+                        {`${roll} `}
+                      </span>
+                    )
+                  })}
+                  </p>
+                </div>
+                <div className="column">
+                  <br />
+                </div>
+              </div>
+            </div>
             <form className="card-content" onSubmit={(e)=>{
               e.preventDefault()
             }}>
+
               <div className="field">
                 <div className="control">
                 <label className="label">Player Pool</label>
@@ -119,42 +148,8 @@ export default function DiceRoller() {
                 Reset
               </button>
             </form>
+            
             </div>
-          </div>
-          <div className="column">
-            <h3 className={styles.resultsHeading}>Results</h3>
-            <p><strong>Winner</strong>: {result.winner}</p>
-            {result.winner && (
-              <p>
-                <strong>Victories</strong>: {result.victories} - {result.victoryType}
-              </p>
-            )}
-            <br />
-            <p><strong>Player Pool:</strong> {result.dieRolls && result.dieRolls.playerRoll.map((roll, i) => {
-              return (
-                <span className={styles.die} key={`player-die-roll-${i}`}>
-                  {`${roll} `}
-                </span>
-              )
-            })}
-            </p>
-            <br />
-            <p><strong>Opp Pool:</strong> {result.dieRolls && result.dieRolls.oppRoll.map((roll, i) => {
-              return (
-                <span className={styles.die} key={`opp-die-roll-${i}`}>
-                  {`${roll} `}
-                </span>
-              )
-            })}
-            </p>
-          </div>
-        </div>
-
-
-      </main>
-
-      <footer className={styles.footer}>
-      </footer>
     </div>
   )
 }

@@ -52,6 +52,7 @@ export default function Home() {
             <div className="column">
               <a href="https://github.com/ulisesrmzroche/sorcerer-rpg-dice-roller">View Source on Github</a>
               <a href="https://github.com/ulisesrmzroche/sorcerer-rpg-dice-roller/issues/new">Bug Report</a>
+              <a href="https://vercel.com">Hosted via Vercel</a>
             </div>
           </div>
         </div>

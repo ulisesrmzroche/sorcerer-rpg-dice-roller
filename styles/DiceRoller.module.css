@@ -90,8 +90,10 @@
 
 .die {
   border: 1px solid black;
-  padding: 3px;
-  margin-right: 5px;
+  padding: 3px 8px; 
+  margin-right: 9px;
+  height: 10px;
+  width: 10px;
 }
 
 .resultsHeading {
