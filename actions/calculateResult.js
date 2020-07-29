@@ -9,6 +9,7 @@ const calculateVictoryType = (winner, victories, diePool) => {
   if (victories >= 4) return 'Total Domination'
   return null
 }
+
 const calculateResult = (dieRolls) => {
   const { playerRoll, oppRoll } = dieRolls
   const winner = calculateWinner(playerRoll, oppRoll)
