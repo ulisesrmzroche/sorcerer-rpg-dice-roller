@@ -14,6 +14,6 @@ describe('Actions::calculateVictories', ()=>{
   it('should return number of victories given opposing die pools', ()=>{
     playerPool = [10, 10, 4, 3]
     oppPool = [10, 9, 3,]
-    expect(calculateVictories(playerPool, oppPool)).toBe(0)
+    expect(calculateVictories(playerPool, oppPool)).toBe(1)
   })
 })

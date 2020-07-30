@@ -9,7 +9,7 @@ const calculateResult = (dieRolls) => {
   return {
     winner: winner,
     victories: victories,
-    victoryType: calculateVictoryType(victories, winner === playerRoll ? playerRoll : oppRoll)
+    victoryType: calculateVictoryType(victories, winner === 'playerRoll' ? playerRoll : oppRoll)
   }
 }
 
