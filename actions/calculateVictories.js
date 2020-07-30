@@ -1,31 +1,28 @@
 import calculateWinner from './calculateWinner'
 
 const calculateVictories = (playerPool = [], oppPool = []) => {
-  if (!playerPool.length || !oppPool.length) return 0
+  if (!playerPool.length && !oppPool.length) return 0
+  let winner = calculateWinner(playerPool, oppPool)
+  if (!winner) return 0
+
   let playerMax = Math.max(...playerPool)
   let oppMax = Math.max(...oppPool)
 
-  if (playerMax === oppMax) {
+  const isDraw = playerMax === oppMax
+
+  if (isDraw) {
     // remove the highest number from both arrays
-    if (playerPool.length) {
-      playerPool = playerPool.filter((roll)=>{
-        return roll !== playerMax
-      })
-    }
-    if (oppPool.length) {
-      oppPool = oppPool.filter((roll)=>{
-        return roll !== oppMax
-      })
-    }
+    playerPool = playerPool.filter((roll)=>{
+      return roll !== playerMax
+    })
+    oppPool = oppPool.filter((roll)=>{
+      return roll !== oppMax
+    })
     return calculateVictories(playerPool, oppPool)
   } else {
-    console.log('calculating victories')
-    let winner = calculateWinner(playerPool, oppPool)
+    winner = calculateWinner(playerPool, oppPool)
     let winnerRoll = winner === 'playerRoll' ? playerPool : oppPool 
-    let loserRoll = winner !== 'playerPool' ? oppPool : playerPool 
-    console.log('wroll', winnerRoll)
-    console.log('lroll', loserRoll)
-    let winnerMax = Math.max(...winnerRoll)
+    let loserRoll = winner === 'playerRoll' ? oppPool : playerPool 
     let loserMax = Math.max(...loserRoll)
 
     return winnerRoll.filter((roll)=>{

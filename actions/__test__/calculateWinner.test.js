@@ -1,5 +1,4 @@
 import calculateWinner from '../calculateWinner'
-import calculateVictories from '../calculateVictories'
 
 describe('Actions::calculateWinner', ()=>{
   it('should return winner given playerRoll has largest single die', ()=>{
@@ -24,13 +23,28 @@ describe('Actions::calculateWinner', ()=>{
     const oppRoll = []
     expect(calculateWinner(playerRoll, oppRoll)).toBe('playerRoll')
   })
+  it('should return null given a total draw', ()=>{
+    const playerRoll = [1]
+    const oppRoll = [1]
+    expect(calculateWinner(playerRoll, oppRoll)).toBe(null)
+  })
+
 
   describe('given a draw', ()=>{
     const playerRoll = [7, 9, 2]
     const oppRoll = [9, 1]
     it('should return a winner playerRoll given following dice pools', ()=>{
       expect(calculateWinner(playerRoll, oppRoll)).toBe('playerRoll')
-      expect(calculateVictories(playerRoll, oppRoll)).toBe(2)
+    })
+    it('should return a winner with 4 victories given following dice pools', ()=>{
+      const playerRoll = [4, 5, 4, 9, 10]
+      const oppRoll = [10, 2, 1]
+      expect(calculateWinner(playerRoll, oppRoll)).toBe('playerRoll')
+    })
+    it('should return a winner with 4 victories given following dice pools', ()=>{
+      const playerRoll = [8, 7, 8, 6]
+      const oppRoll = [5, 3, 5, 2, 7]
+      expect(calculateWinner(playerRoll, oppRoll)).toBe('playerRoll')
     })
   })
 

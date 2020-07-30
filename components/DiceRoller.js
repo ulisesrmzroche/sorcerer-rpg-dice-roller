@@ -124,7 +124,7 @@ export default function DiceRoller() {
                   const dieRolls = rollDice(playerDicePoolSize, oppDicePoolSize, dieSize)
                   let results = calculateResult(dieRolls)
                   setResult({
-                    winner: results.winner === dieRolls.playerRoll ? 'Player' : 'Opp',
+                    winner: results.winner === 'playerRoll' ? 'Player' : 'Opp',
                     victories: results.victories,
                     dieRolls: dieRolls,
                     victoryType: results.victoryType

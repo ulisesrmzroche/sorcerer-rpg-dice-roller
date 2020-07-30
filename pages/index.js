@@ -5,11 +5,12 @@ import AppFooter from '../components/AppFooter'
 export default function Home() {
   return (
     <div className="page-home">
+      <Head>
+        <title>Sorcerer RPG Dice Roller</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <div className="container">
-        <Head>
-          <title>Sorcerer RPG Dice Roller</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
         <header>
 
           <div className="column">
@@ -22,15 +23,12 @@ export default function Home() {
         </header>
 
         <main className="columns">
-
           <div className="column">
             <DiceRoller />
           </div>
         </main>
       </div>
       <AppFooter />
-
-      
     </div>
   )
 }
