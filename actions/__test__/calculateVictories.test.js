@@ -1,6 +1,6 @@
 import calculateVictories from '../calculateVictories'
 
-describe('Actions::calculateVictories', ()=>{
+describe.only('Actions::calculateVictories', ()=>{
   let playerPool = [1, 2, 3]
   let oppPool = [9]
   it('should return number of victories given opposing die pools', ()=>{

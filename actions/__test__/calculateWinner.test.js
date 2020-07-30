@@ -30,7 +30,7 @@ describe('Actions::calculateWinner', ()=>{
     const oppRoll = [9, 1]
     it('should return a winner playerRoll given following dice pools', ()=>{
       expect(calculateWinner(playerRoll, oppRoll)).toBe('playerRoll')
-      expect(calculateVictories(playerRoll, oppRoll)).toBe(1)
+      expect(calculateVictories(playerRoll, oppRoll)).toBe(2)
     })
   })
 
