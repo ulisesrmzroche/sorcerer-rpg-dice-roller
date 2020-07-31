@@ -29,7 +29,7 @@ export default function DiceRoller() {
   return (
     <div className="dice-roller">
       <Head>
-        <title>Create Next App</title>
+        <title>Sorcerer RPG Dice Roller</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
             <div className="card">
