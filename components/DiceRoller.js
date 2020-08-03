@@ -4,6 +4,17 @@ import styles from '../styles/DiceRoller.module.css'
 import rollDice from '../actions/rollDice'
 import calculateResult from '../actions/calculateResult'
 
+const prettyPrintWinner = (winner) => {
+  switch (winner) {
+    case 'playerRoll':
+      return 'Player'
+    case 'oppRoll':
+      return 'Opp'
+    case null:
+      return 'Draw'
+  }
+}
+
 export default function DiceRoller() {
   const [playerDicePoolSize, setPlayerDicePoolSize] = useState(1)
   const [oppDicePoolSize, setOppDicePoolSize] = useState(1)
@@ -124,7 +135,7 @@ export default function DiceRoller() {
                   const dieRolls = rollDice(playerDicePoolSize, oppDicePoolSize, dieSize)
                   let results = calculateResult(dieRolls)
                   setResult({
-                    winner: results.winner === 'playerRoll' ? 'Player' : 'Opp',
+                    winner: prettyPrintWinner(results.winner),
                     victories: results.victories,
                     dieRolls: dieRolls,
                     victoryType: results.victoryType

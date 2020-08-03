@@ -8,6 +8,7 @@ const calculateWinner = (playerRoll, oppRoll) => {
 
   if (playerRollMax > oppRollMax) return 'playerRoll'
   if (oppRollMax > playerRollMax) return 'oppRoll'
+  if (oppRollMax > playerRollMax) return null
 
   const isDraw = playerRollMax === oppRollMax
   if (isDraw) {

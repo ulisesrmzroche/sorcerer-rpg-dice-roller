@@ -46,6 +46,11 @@ describe('Actions::calculateWinner', ()=>{
       const oppRoll = [5, 3, 5, 2, 7]
       expect(calculateWinner(playerRoll, oppRoll)).toBe('playerRoll')
     })
+    it('should return null given the following dice pools: [1], [1]', ()=>{
+      const playerRoll = [2]
+      const oppRoll = [2]
+      expect(calculateWinner(playerRoll, oppRoll)).toBe(null)
+    })
   })
 
 })
