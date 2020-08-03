@@ -15,7 +15,7 @@ export default function Home() {
 
           <div className="column">
 
-          <h1 className={styles.title}>
+          <h1 className="title is-2">
             Sorcerer RPG Die Roller
           </h1>
 
