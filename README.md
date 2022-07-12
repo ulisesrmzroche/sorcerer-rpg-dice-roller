@@ -4,10 +4,7 @@
 
 ## Getting Started
 
-This is a Dice Roll Simulator for the RPG "Sorcerer" by Ron Edwards. I am using this to write my novel "Grimoire of a Nahual" on Medium
-
-[Grimoire of a Nahual](https://medium.com/grimoire-of-a-nagual-kingdom-come)
-[Dice Roll App](https://sorcerer-rpg-dice-roller.vercel.app/)
+This is a Dice Roll Simulator for the RPG "Sorcerer" by Ron Edwards.
 
 ## Rules
 
